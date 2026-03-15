@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div id="chat-box" style="border:1px solid #ccc; padding:10px; width:300px; min-height:50px;">
+        <!-- AI 的字会跳到这里 -->
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+
+        // 1. 建立 SSE 连接
+        const eventSource = new EventSource("http://127.0.0.1:8000/sse");
+
+        // 2. 监听消息
+        eventSource.onmessage = function(event) {
+            // event.data 对应后端 yield 后面的内容
+            chatBox.innerText += event.data;
+        };
+
+        // 3. 监听错误或结束
+        eventSource.onerror = function() {
+            console.log("流传输结束或出错");
+            eventSource.close(); // 关闭连接
+        };
+    </script>
+</body>
+</html>
