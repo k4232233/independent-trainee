@@ -1,3 +1,2 @@
-# Independent-Trainee
-个人练习，记录demo
-## 多了再写目录~
+# independent_trainee
+个人练习，一些简单无用的demo
